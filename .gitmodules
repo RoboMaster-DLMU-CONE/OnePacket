@@ -1,0 +1,3 @@
+[submodule "3rdparty/CRCpp"]
+	path = 3rdparty/CRCpp
+	url = https://codeberg.org/moonfeather/CRCpp.git
