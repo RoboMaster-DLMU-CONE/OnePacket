@@ -1,4 +1,5 @@
-#include "packet.h"
+#include "packets/CustomControllerPacket.h"
+#include "serialize.h"
 uint8_t buffer[50] = {};
 CustomControlPacket packet = {.cmd = 0x0302};
 
