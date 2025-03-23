@@ -17,3 +17,10 @@ target_include_directories(OnePacket PUBLIC include)
 
 add_executable(C_Example example/cExample.c)
 target_link_libraries(C_Example PRIVATE OnePacket)
+
+include(CTest)
+add_executable(CustomControlPacketTest test/CustomControlPacket.c)
+target_link_libraries(CustomControlPacketTest OnePacket)
+add_test(NAME CustomControlPacketTest
+        COMMAND CustomControlPacketTest
+)
