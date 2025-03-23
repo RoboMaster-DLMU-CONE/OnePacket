@@ -11,3 +11,6 @@ add_library(OnePacket SHARED
         src/PacketBase.hpp)
 
 target_include_directories(OnePacket PUBLIC include)
+
+add_executable(C_Example example/cExample.c)
+target_link_libraries(C_Example PRIVATE OnePacket)

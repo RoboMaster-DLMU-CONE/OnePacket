@@ -11,8 +11,8 @@ extern "C" {
 #endif
 
 typedef struct __attribute__((packed)) {
-    const uint16_t cmd = 0x0302;
-    uint8_t data[30]{};
+    const uint16_t cmd; //cmd = 0x0302
+    uint8_t data[30];
 } CustomControlPacket;
 
 int serialize(const void *struct_ptr, uint8_t *buffer, size_t buffer_len);
