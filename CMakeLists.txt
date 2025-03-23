@@ -1,7 +1,12 @@
 cmake_minimum_required(VERSION 3.30)
 project(OnePacket)
 
-set(CMAKE_CXX_STANDARD 20)
+if ((CMAKE_CXX_STANDARD EQUAL 98) OR (CMAKE_CXX_STANDARD EQUAL 03))
+    message(ERROR "This library need C++ 11 or above.")
+endif ()
+
+option(COMPILE_OP_EXAMPLE "" ON)
+option(COMPILE_OP_CTEST "" ON)
 
 add_library(OnePacket SHARED
         include/serialize.h
@@ -15,12 +20,16 @@ add_library(OnePacket SHARED
 
 target_include_directories(OnePacket PUBLIC include)
 
-add_executable(C_Example example/cExample.c)
-target_link_libraries(C_Example PRIVATE OnePacket)
+if (COMPILE_OP_EXAMPLE)
+    add_executable(C_Example example/cExample.c)
+    target_link_libraries(C_Example PRIVATE OnePacket)
+endif ()
 
-include(CTest)
-add_executable(CustomControlPacketTest test/CustomControlPacket.c)
-target_link_libraries(CustomControlPacketTest OnePacket)
-add_test(NAME CustomControlPacketTest
-        COMMAND CustomControlPacketTest
-)
+if (COMPILE_OP_CTEST)
+    include(CTest)
+    add_executable(CustomControlPacketTest test/CustomControlPacket.c)
+    target_link_libraries(CustomControlPacketTest OnePacket)
+    add_test(NAME CustomControlPacketTest
+            COMMAND CustomControlPacketTest
+    )
+endif ()
