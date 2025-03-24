@@ -10,13 +10,20 @@ set(CMAKE_CXX_STANDARD 11)
 option(COMPILE_OP_EXAMPLE "" ON)
 option(COMPILE_OP_CTEST "" ON)
 
-file(GLOB_RECURSE SRC_FILES "src/*.c" "src/*.h" "src/*.cpp" "src/*.hpp")
+file(GLOB_RECURSE C_SRC_FILES "src/*.c")
+file(GLOB_RECURSE C_HEADER_FILES "src/*.h")
+file(GLOB_RECURSE CPP_SRC_FILES "src/*.cpp")
+file(GLOB_RECURSE CPP_HEADER_FILES "src/*.hpp")
+
+# Set language properties if needed
+set_source_files_properties(${CPP_SRC_FILES} ${CPP_HEADER_FILES} PROPERTIES LANGUAGE CXX)
 
 add_library(OnePacket SHARED
         include/serialize.h
         include/deserialize.h
         include/packets/CustomControllerPacket.h
-        ${SRC_FILES}
+        ${C_SRC_FILES} ${C_HEADER_FILES}
+        ${CPP_SRC_FILES} ${CPP_HEADER_FILES}
 )
 
 target_include_directories(OnePacket PUBLIC include)

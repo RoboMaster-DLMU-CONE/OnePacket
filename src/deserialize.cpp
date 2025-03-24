@@ -1,5 +1,5 @@
-//
-// Created by MoonFeather on 25-3-24.
-//
+#include "deserialize.h"
 
-#include "../include/deserialize.h"
+int deserialize(const uint8_t *buffer, void *struct_ptr) {
+    return 1;
+}

@@ -10,6 +10,7 @@ extern "C" {
 #define FALSE 0
 
 const uint8_t CRC8_INIT = 0xff;
+const uint16_t CRC16_INIT = 0xffff;
 
 // CRC8
 void Append_CRC8_Check_Sum(uint8_t *pchMessage, uint16_t dwLength);
@@ -23,7 +24,7 @@ void Append_CRC16_Check_Sum(uint8_t *pchMessage, uint32_t dwLength);
 
 uint32_t Verify_CRC16_Check_Sum(uint8_t *pchMessage, uint32_t dwLength);
 
-uint16_t Get_CRC16_Check_Sum(uint8_t *pchMessage, uint32_t dwLength, uint16_t wCRC);
+uint16_t Get_CRC16_Check_Sum(const uint8_t *pchMessage, uint32_t dwLength, uint16_t wCRC);
 
 #ifdef __cplusplus
 }

@@ -4,11 +4,13 @@
 #include <unordered_map>
 #include "CustomControlPacketFunction.hpp"
 
-using S_CustomFunc = int(*)(const void *, uint8_t *, const size_t);
-using S_FunctionMap = std::unordered_map<uint16_t, S_CustomFunc>;
+using std::pair;
+using S_CustomFunc = void(*)(const void *, uint8_t *, const size_t);
+using DS_CustomFunc = void(*)(const uint8_t *, void *);
+using CustomFunctionMap = std::unordered_map<uint16_t, pair<S_CustomFunc, DS_CustomFunc> >;
 
 
-static S_FunctionMap S_functionMap = {
-    {0x0302, S_CustomControlPacketFunction}
+static CustomFunctionMap custom_function_map = {
+    {0x0302, {S_CustomControlPacketFunction, DS_CustomControlPacketFunction}}
 };
 #endif //CUSTOMFUNCTION_HPP
