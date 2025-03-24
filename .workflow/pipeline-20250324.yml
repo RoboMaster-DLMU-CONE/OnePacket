@@ -17,7 +17,7 @@ stages:
       - step: build@gcc
         name: build_gcc_and_ctest
         displayName: GCC 构建与 CTest 测试
-        gccVersion: '10.3'
+        gccVersion: '9.4'
         commands:
           - '# 新建build目录，切换到build目录'
           - 'mkdir build && cd build '
