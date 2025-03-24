@@ -3,6 +3,8 @@
 #include <stdint.h>
 #include <string.h>
 
+#define CustomControllerPacketBufferLength 39
+
 typedef struct __attribute__((packed)) {
     const uint16_t cmd; //cmd = 0x0302
     uint8_t data[30];

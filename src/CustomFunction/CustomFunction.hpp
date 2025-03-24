@@ -9,6 +9,6 @@ using S_FunctionMap = std::unordered_map<uint16_t, S_CustomFunc>;
 
 
 static S_FunctionMap S_functionMap = {
-    {0x0302, CustomControlPacketFunction}
+    {0x0302, S_CustomControlPacketFunction}
 };
 #endif //CUSTOMFUNCTION_HPP

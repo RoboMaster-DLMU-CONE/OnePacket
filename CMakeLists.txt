@@ -11,6 +11,8 @@ option(COMPILE_OP_CTEST "" ON)
 add_library(OnePacket SHARED
         include/serialize.h
         src/serialize.cpp
+        src/CustomFunction/DJICRC/DJICRC.c
+        src/CustomFunction/DJICRC/DJICRC.h
         src/CustomFunction/CustomFunction.hpp
         src/CustomFunction/CustomControlPacketFunction.hpp
         src/PacketBase.hpp
