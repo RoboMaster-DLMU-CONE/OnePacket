@@ -5,6 +5,8 @@ if ((CMAKE_CXX_STANDARD EQUAL 98) OR (CMAKE_CXX_STANDARD EQUAL 03))
     message(ERROR "This library need C++ 11 or above.")
 endif ()
 
+set(CMAKE_CXX_STANDARD 11)
+
 option(COMPILE_OP_EXAMPLE "" ON)
 option(COMPILE_OP_CTEST "" ON)
 
