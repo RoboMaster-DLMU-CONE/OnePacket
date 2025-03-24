@@ -8,17 +8,14 @@ endif ()
 option(COMPILE_OP_EXAMPLE "" ON)
 option(COMPILE_OP_CTEST "" ON)
 
+file(GLOB_RECURSE SRC_FILES "src/*.c" "src/*.h" "src/*.cpp" "src/*.hpp")
+
 add_library(OnePacket SHARED
         include/serialize.h
-        src/serialize.cpp
-        src/CustomFunction/DJICRC/DJICRC.c
-        src/CustomFunction/DJICRC/DJICRC.h
-        src/CustomFunction/CustomFunction.hpp
-        src/CustomFunction/CustomControlPacketFunction.hpp
-        src/PacketBase.hpp
-        src/deserialize.cpp
         include/deserialize.h
-        include/packets/CustomControllerPacket.h)
+        include/packets/CustomControllerPacket.h
+        ${SRC_FILES}
+)
 
 target_include_directories(OnePacket PUBLIC include)
 

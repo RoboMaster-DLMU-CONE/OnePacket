@@ -3,7 +3,7 @@
 #include "packets/CustomControllerPacket.h"
 #include "DJICRC/DJICRC.h"
 
-inline uint8_t seq{};
+uint8_t seq{};
 
 int S_CustomControlPacketFunction(const void *packet, uint8_t *buffer, const size_t buffer_len) {
     if (buffer_len != CustomControllerPacketBufferLength) return -1;
