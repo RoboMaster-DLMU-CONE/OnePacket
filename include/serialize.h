@@ -2,8 +2,10 @@
 #define PACKET_H
 #ifdef __cplusplus
 #include <cstdint>
+#include <cstddef>
 #else
 #include <stdint.h>
+#include <stddef.h>
 #endif
 
 #ifdef __cplusplus
