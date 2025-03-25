@@ -9,7 +9,7 @@ struct __attribute__((packed)) PacketBase {
     //Data Part
     uint8_t data[255]{};
     //End of Data
-    //Full Packet Varify (CRC16)
+    //Full Packet Verify (CRC16)
 };
 
 #endif //PACKETBASE_HPP

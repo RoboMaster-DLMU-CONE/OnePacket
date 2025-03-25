@@ -77,7 +77,7 @@ uint8_t Get_CRC8_Check_Sum(const uint8_t *pchMessage, uint16_t dwLength, uint8_t
 ** Input: Data to Verify,Stream length = Data + checksum
 ** Output: True or False (CRC Verify Result)
 */
-uint32_t Verify_CRC8_Check_Sum(uint8_t *pchMessage, uint16_t dwLength) {
+uint32_t Verify_CRC8_Check_Sum(const uint8_t *pchMessage, uint16_t dwLength) {
 	uint8_t ucExpected = 0;
 
 	if (pchMessage == 0 || dwLength <= 2) {
@@ -132,7 +132,7 @@ uint16_t Get_CRC16_Check_Sum(const uint8_t *pchMessage, uint32_t dwLength, uint1
 ** Input: Data to Verify,Stream length = Data + checksum
 ** Output: True or False (CRC Verify Result)
 */
-uint32_t Verify_CRC16_Check_Sum(uint8_t *pchMessage, uint32_t dwLength) {
+uint32_t Verify_CRC16_Check_Sum(const uint8_t *pchMessage, uint32_t dwLength) {
 	uint16_t wExpected = 0;
 
 	if ((pchMessage == NULL) || (dwLength <= 2)) {
