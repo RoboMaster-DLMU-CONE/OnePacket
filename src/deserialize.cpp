@@ -2,6 +2,7 @@
 
 #include "CustomFunction/CustomFunction.hpp"
 #include <stdexcept>
+#include <cstring>
 
 #include "DataLength.hpp"
 
