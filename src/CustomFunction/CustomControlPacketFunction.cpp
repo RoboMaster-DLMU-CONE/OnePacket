@@ -1,12 +1,7 @@
-#ifndef CUSTOMCONTROLPACKETFUNCTION_HPP
-#define CUSTOMCONTROLPACKETFUNCTION_HPP
-#include "../OnePacketException.hpp"
+#include "CustomFunction/CustomControlPacketFunction.hpp"
 #include "packets/CustomControllerPacket.h"
-#include "DJICRC/DJICRC.h"
 
-static uint8_t seq{};
-
-inline void S_CustomControlPacketFunction(const void *packet, uint8_t *buffer, const size_t buffer_len) {
+void S_CustomControlPacketFunction(const void *packet, uint8_t *buffer, const size_t buffer_len) {
     if (buffer_len != CustomControllerPacketBufferLength)
         throw BufferRangeOverflow(
             "The CustomControllerPacketBufferLength is " + std::to_string(CustomControllerPacketBufferLength) +
@@ -25,7 +20,7 @@ inline void S_CustomControlPacketFunction(const void *packet, uint8_t *buffer, c
     Append_CRC16_Check_Sum(buffer, CustomControllerPacketBufferLength);
 };
 
-inline void DS_CustomControlPacketFunction(const uint8_t *buffer, void *packet) {
+void DS_CustomControlPacketFunction(const uint8_t *buffer, void *packet) {
     if (buffer[0] != 0XA5) {
         throw OnePacketException();
     }
@@ -35,6 +30,3 @@ inline void DS_CustomControlPacketFunction(const uint8_t *buffer, void *packet) 
     }
     std::copy(&buffer[7], &buffer[7] + 30, static_cast<CustomControlPacket *>(packet)->data);
 }
-
-
-#endif //CUSTOMCONTROLPACKETFUNCTION_HPP

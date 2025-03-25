@@ -18,15 +18,17 @@ file(GLOB_RECURSE CPP_HEADER_FILES "src/*.hpp")
 # Set language properties if needed
 set_source_files_properties(${CPP_SRC_FILES} ${CPP_HEADER_FILES} PROPERTIES LANGUAGE CXX)
 
+add_subdirectory(src)
+
 add_library(OnePacket SHARED
         include/serialize.h
         include/deserialize.h
         include/packets/CustomControllerPacket.h
-        ${C_SRC_FILES} ${C_HEADER_FILES}
-        ${CPP_SRC_FILES} ${CPP_HEADER_FILES}
 )
 
+set_target_properties(OnePacket PROPERTIES LINKER_LANGUAGE CXX)
 target_include_directories(OnePacket PUBLIC include)
+target_link_libraries(OnePacket PUBLIC OnePacketSrc)
 
 if (COMPILE_OP_EXAMPLE)
     add_executable(C_Example example/cExample.c)
