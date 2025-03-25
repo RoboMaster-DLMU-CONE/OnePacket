@@ -30,6 +30,14 @@ set_target_properties(OnePacket PROPERTIES LINKER_LANGUAGE CXX)
 target_include_directories(OnePacket PUBLIC include)
 target_link_libraries(OnePacket PUBLIC OnePacketSrc)
 
+if (WIN32)
+    add_custom_command(TARGET OnePacket POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            $<TARGET_FILE:OnePacketSrc>
+            $<TARGET_FILE_DIR:CustomControlPacketTest>
+    )
+endif ()
+
 if (COMPILE_OP_EXAMPLE)
     add_executable(C_Example example/cExample.c)
     target_link_libraries(C_Example PRIVATE OnePacket)
