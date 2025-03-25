@@ -2,19 +2,15 @@
 #define XENOMASTERPACKET_H
 #include <stdint.h>
 
-enum uint8_t XenoMasterStatus {
+typedef enum __attribute__((packed)) {
     MasterReady = 1,
     MasterUnstable = 2,
     MasterCrashed = 3,
-};
+} XenoMasterStatus;
 
 typedef struct __attribute__((packed)) {
     const uint16_t cmd;
-    uint8_t headerCRC8{};
-
-    enum XenoMasterStatus status;
-
-    uint16_t tailCRC16{};
+    XenoMasterStatus status;
 } XenoMasterPacket;
 
 static void init_xeno_master_packet(XenoMasterPacket *packet) {

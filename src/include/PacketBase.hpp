@@ -3,11 +3,13 @@
 #include <cstdint>
 
 struct __attribute__((packed)) PacketBase {
+    //Header Part
     uint16_t cmd{};
-    uint8_t dataLength{};
-    uint8_t headerCRC8{};
+    //End of Header (CRC8)
+    //Data Part
     uint8_t data[255]{};
-    uint16_t tailCRC16{};
+    //End of Data
+    //Full Packet Varify (CRC16)
 };
 
 #endif //PACKETBASE_HPP

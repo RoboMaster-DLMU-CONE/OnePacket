@@ -46,9 +46,15 @@ endif ()
 
 if (COMPILE_OP_CTEST)
     include(CTest)
-    add_executable(CustomControlPacketTest test/CustomControlPacket.c)
-    target_link_libraries(CustomControlPacketTest OnePacket)
-    add_test(NAME CustomControlPacketTest
-            COMMAND CustomControlPacketTest
-    )
+    file(GLOB TEST_C_FILES "test/*.c")
+
+    foreach (TEST_FILE ${TEST_C_FILES})
+        get_filename_component(TEST_NAME ${TEST_FILE} NAME_WE)
+        add_executable(${TEST_NAME}Test ${TEST_FILE})
+        target_link_libraries(${TEST_NAME}Test PUBLIC OnePacket)
+        target_include_directories(${TEST_NAME}Test PUBLIC include)
+        add_test(NAME ${TEST_NAME}Test
+                COMMAND ${TEST_NAME}Test
+        )
+    endforeach ()
 endif ()
