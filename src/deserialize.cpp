@@ -7,7 +7,7 @@
 
 int deserialize(const uint8_t *buffer, void *struct_ptr) {
     try {
-        const auto func = custom_function_map[buffer[0]].second;
+        const auto func = custom_function_map.at(buffer[0]).second;
         try {
             func(buffer, struct_ptr);
         } catch (const OnePacketException &e) {

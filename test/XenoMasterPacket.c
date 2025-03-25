@@ -15,5 +15,9 @@ int main() {
     assert((buffer[0] + (buffer[1] << 8)) == packet.cmd && "CMD is being corrupted.");
     assert(buffer[3] == MasterReady && "Data is being corrupted.");
 
+    assert((deserialize(buffer, &packet)) && "Deserialize function does not return 1");
+    assert(packet.cmd == 0x101 && packet.status == MasterReady && "Data is being corrupted.");
+
+
     return 0;
 }
