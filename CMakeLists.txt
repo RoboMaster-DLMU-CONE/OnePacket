@@ -20,11 +20,10 @@ set_source_files_properties(${CPP_SRC_FILES} ${CPP_HEADER_FILES} PROPERTIES LANG
 
 add_subdirectory(src)
 
+file(GLOB_RECURSE INTERFACE_FILES "include/*.h")
+
 add_library(OnePacket SHARED
-        include/serialize.h
-        include/deserialize.h
-        include/packets/CustomControllerPacket.h
-        include/packets/XenoMasterPacket.h
+        ${INTERFACE_FILES}
 )
 
 set_target_properties(OnePacket PROPERTIES LINKER_LANGUAGE CXX)
