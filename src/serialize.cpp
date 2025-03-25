@@ -4,7 +4,7 @@
 #include "DataLength.hpp"
 #include "PacketBase.hpp"
 #include "CustomFunction/CustomFunction.hpp"
-
+#include <cstring>
 int serialize(const void *struct_ptr, uint8_t *buffer, const size_t buffer_len) {
     const auto *base = static_cast<const PacketBase *>(struct_ptr);
     try {
