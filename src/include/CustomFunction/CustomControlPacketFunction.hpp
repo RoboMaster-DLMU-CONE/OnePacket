@@ -1,7 +1,7 @@
 #ifndef CUSTOMCONTROLPACKETFUNCTION_HPP
 #define CUSTOMCONTROLPACKETFUNCTION_HPP
 #include "OnePacketException.hpp"
-#include "CustomFunction/DJICRC/DJICRC.h"
+#include "DJICRC/DJICRC.h"
 
 static uint8_t seq{};
 

@@ -24,6 +24,7 @@ add_library(OnePacket SHARED
         include/serialize.h
         include/deserialize.h
         include/packets/CustomControllerPacket.h
+        include/packets/XenoMasterPacket.h
 )
 
 set_target_properties(OnePacket PROPERTIES LINKER_LANGUAGE CXX)

@@ -2,10 +2,11 @@
 #define PACKETBASE_HPP
 #include <cstdint>
 
-struct PacketBase {
+struct __attribute__((packed)) PacketBase {
     uint16_t cmd{};
+    uint8_t dataLength{};
     uint8_t headerCRC8{};
-    uint16_t data[10]{};
+    uint8_t data[255]{};
     uint16_t tailCRC16{};
 };
 

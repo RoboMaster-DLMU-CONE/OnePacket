@@ -3,7 +3,6 @@
 
 #include <exception>
 #include <string>
-#include <utility>
 
 class OnePacketException : public std::exception {
 public:

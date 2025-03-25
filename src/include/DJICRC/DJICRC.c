@@ -1,4 +1,4 @@
-#include "CustomFunction/DJICRC/DJICRC.h"
+#include "DJICRC.h"
 #include <stdio.h>
 
 

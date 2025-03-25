@@ -1,7 +1,6 @@
 #include "CustomFunction/DJIReferee.hpp"
 #include "OnePacketException.hpp"
 #include "CustomFunction/CustomFunction.hpp"
-#include <stdexcept>
 
 void DS_DJIRefereeFunction(const uint8_t *buffer, void *packet) {
     if (buffer[0] != 0XA5) {
