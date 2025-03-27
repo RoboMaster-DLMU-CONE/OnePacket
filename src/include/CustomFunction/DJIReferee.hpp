@@ -3,5 +3,5 @@
 #include <cstdint>
 
 
-void DS_DJIRefereeFunction(const uint8_t *buffer, void *packet);
+int DS_DJIRefereeFunction(const uint8_t *buffer, void *packet);
 #endif //DJIREFEREE_HPP

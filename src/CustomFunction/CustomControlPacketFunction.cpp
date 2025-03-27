@@ -1,11 +1,13 @@
 #include "CustomFunction/CustomControlPacketFunction.hpp"
+
+#include <algorithm>
+
+#include "../error.h"
 #include "packets/CustomControllerPacket.h"
 
-void S_CustomControlPacketFunction(const void *packet, uint8_t *buffer, const size_t buffer_len) {
+int S_CustomControlPacketFunction(const void *packet, uint8_t *buffer, const size_t buffer_len) {
     if (buffer_len != CustomControllerPacketBufferLength)
-        throw BufferRangeOverflow(
-            "The CustomControllerPacketBufferLength is " + std::to_string(CustomControllerPacketBufferLength) +
-            ", buffer_len is " + std::to_string(buffer_len));
+        return BufferOverflowError;
 
     const auto controller_packet = static_cast<const CustomControlPacket *>(packet);
     seq = seq > 255 ? 0 : seq + 1;
@@ -18,15 +20,17 @@ void S_CustomControlPacketFunction(const void *packet, uint8_t *buffer, const si
     buffer[6] = 0x03;
     memcpy(&buffer[7], controller_packet->data, 30);
     Append_CRC16_Check_Sum(buffer, CustomControllerPacketBufferLength);
+    return 1;
 };
 
-void DS_CustomControlPacketFunction(const uint8_t *buffer, void *packet) {
+int DS_CustomControlPacketFunction(const uint8_t *buffer, void *packet) {
     if (buffer[0] != 0XA5) {
-        throw OnePacketException();
+        return UnknownError;
     }
     if (Get_CRC8_Check_Sum(buffer, 4, CRC8_INIT) != buffer[4] || Get_CRC16_Check_Sum(
             buffer, CustomControllerPacketBufferLength, CRC16_INIT) != buffer[38]) {
-        throw CRCException("");
+        return CRCError;
     }
-    std::copy(&buffer[7], &buffer[7] + 30, static_cast<CustomControlPacket *>(packet)->data);
+    std::copy_n(&buffer[7], 30, static_cast<CustomControlPacket *>(packet)->data);
+    return 1;
 }
