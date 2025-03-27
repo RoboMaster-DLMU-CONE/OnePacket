@@ -5,7 +5,7 @@
 #include <unordered_map>
 #include "CustomControlPacketFunction.hpp"
 #include "DJIReferee.hpp"
-#include "../../error.h"
+#include "error.h"
 
 using std::pair;
 using S_CustomFunc = int(*)(const void *, uint8_t *, const size_t);

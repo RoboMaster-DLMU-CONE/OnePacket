@@ -2,15 +2,16 @@
 
 #include <algorithm>
 
-#include "../error.h"
+#include "error.h"
 #include "packets/CustomControllerPacket.h"
 
+uint8_t seq{};
 int S_CustomControlPacketFunction(const void *packet, uint8_t *buffer, const size_t buffer_len) {
     if (buffer_len != CustomControllerPacketBufferLength)
         return BufferOverflowError;
 
     const auto controller_packet = static_cast<const CustomControlPacket *>(packet);
-    seq = seq > 255 ? 0 : seq + 1;
+    seq = seq > 254 ? 0 : seq + 1;
     buffer[0] = 0xA5;
     buffer[1] = CustomControllerPacketBufferLength;
     buffer[2] = 0;
