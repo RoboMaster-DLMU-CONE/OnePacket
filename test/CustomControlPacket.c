@@ -11,7 +11,7 @@ void setData() {
 }
 
 void testHeader(const uint8_t *buffer) {
-    assert(buffer[0] == 0xA5 && buffer[1] == 39 && buffer[2] == 0 && "Wrong serialized frame header.");
+    assert(buffer[0] == 0xA5 && buffer[1] == 30 && buffer[2] == 0 && "Wrong serialized frame header.");
     assert(buffer[5] == 0x02 && buffer[6] == 0x03 && "Wrong serialized cmd_id");
 }
 

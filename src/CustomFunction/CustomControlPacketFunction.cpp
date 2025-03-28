@@ -6,6 +6,7 @@
 #include "packets/CustomControllerPacket.h"
 
 uint8_t seq{};
+
 int S_CustomControlPacketFunction(const void *packet, uint8_t *buffer, const size_t buffer_len) {
     if (buffer_len != CustomControllerPacketBufferLength)
         return BufferOverflowError;
@@ -13,7 +14,7 @@ int S_CustomControlPacketFunction(const void *packet, uint8_t *buffer, const siz
     const auto controller_packet = static_cast<const CustomControlPacket *>(packet);
     seq = seq > 254 ? 0 : seq + 1;
     buffer[0] = 0xA5;
-    buffer[1] = CustomControllerPacketBufferLength;
+    buffer[1] = 0x1E;
     buffer[2] = 0;
     buffer[3] = seq;
     buffer[4] = Get_CRC8_Check_Sum(controller_packet->data, 4, CRC8_INIT);
