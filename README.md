@@ -1,3 +1,7 @@
+## 注意
+
+该库已废弃，请使用新开发的[rpl](https://github.com/RoboMaster-DLMU-CONE/rpl)
+
 ## 项目简介
 
 _**All-in-One**_ 数据包`序列`/`反序列`化 库，支持`C`/`C++`通过CMake调用该库。
